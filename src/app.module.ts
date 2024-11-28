@@ -1,10 +1,17 @@
 import { Module } from '@nestjs/common';
-import { UsuarioService } from './services/usuario.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Bono } from './entities/bono.entity';
+import { Usuario } from './entities/usuario.entity';  // Agregar Usuario
+import { Clase } from './entities/clase.entity';  // Si tienes Clase también, agrégala
 import { BonoService } from './services/bono.service';
-import { ClaseService } from './services/clase.service';
+import { UsuarioService } from './services/usuario.service'; // Agregar UsuarioService
+import { BonoController } from './controllers/bono.controller';
 
 @Module({
-  providers: [UsuarioService, BonoService, ClaseService],
-  exports: [UsuarioService, BonoService, ClaseService],
+  imports: [
+    TypeOrmModule.forFeature([Bono, Usuario, Clase]),  // Agregar Usuario y Clase
+  ],
+  controllers: [BonoController],  // Agregar UsuarioController
+  providers: [BonoService, UsuarioService],  // Agregar UsuarioService
 })
 export class AppModule {}
