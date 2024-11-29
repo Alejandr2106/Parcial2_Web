@@ -3,6 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Bono } from '../entities/bono.entity';
 import { Usuario } from '../entities/usuario.entity';
+import { CreateBonoDto } from 'src/dtos/create-bono.dto';
+import { Clase } from '../entities/clase.entity';
 
 @Injectable()
 export class BonoService {
@@ -11,10 +13,12 @@ export class BonoService {
     private readonly bonoRepository: Repository<Bono>,
     @InjectRepository(Usuario)
     private readonly usuarioRepository: Repository<Usuario>,
+    @InjectRepository(Clase)
+    private readonly claseRepository: Repository<Clase>,
   ) {}
 
-  async crearBono(bono: Partial<Bono>, userId: number): Promise<Bono> {
-    const usuario = await this.usuarioRepository.findOne({ where: { id: userId } });
+  async crearBono(bono: Partial<CreateBonoDto>): Promise<Bono> {
+    const usuario = await this.usuarioRepository.findOne({ where: { id: bono.usuarioId } });
     if (!usuario || usuario.rol !== 'Profesor') {
       throw new BadRequestException('Solo un usuario con rol de Profesor puede tener bonos.');
     }
@@ -23,8 +27,16 @@ export class BonoService {
       throw new BadRequestException('El monto del bono debe ser positivo.');
     }
 
-    bono.usuario = usuario;
-    return this.bonoRepository.save(bono);
+    const bonoEntity = new Bono();
+    const clase = await this.claseRepository.findOne({ where: { id: bono.claseId } });
+
+    bonoEntity.monto = bono.monto;
+    bonoEntity.usuario = usuario;
+    bonoEntity.calificacion = bono.calificacion;
+    bonoEntity.palabraClave = bono.palabraClave;
+    bonoEntity.clase = clase;
+
+    return this.bonoRepository.save(bonoEntity);
   }
 
   async findBonoByCodigo(cod: string): Promise<Bono> {

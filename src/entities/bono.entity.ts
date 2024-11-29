@@ -10,7 +10,7 @@ export class Bono {
   @Column()
   monto: number;
 
-  @Column('double')
+  @Column('float')
   calificacion: number;
 
   @Column()

@@ -16,4 +16,9 @@ export class CreateBonoDto {
   @IsNotEmpty()
   @IsInt()
   claseId: number;
+
+  @IsNotEmpty()
+  @IsInt()
+  calificacion: number;
+
 }
