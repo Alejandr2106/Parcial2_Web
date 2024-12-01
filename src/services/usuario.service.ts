@@ -15,7 +15,7 @@ export class UsuarioService {
   ) {}
 
   async crearUsuario(usuario: Partial<Usuario>): Promise<Usuario> {
-    if (usuario.rol === 'Profesor') {
+    if (usuario.rol === 'Profesor' || usuario.rol === 'profesor') {
       const gruposValidos = ['TICSW', 'IMAGINE', 'COMIT'];
       if (!gruposValidos.includes(usuario.grupoInvestigacion)) {
         throw new BadRequestException(
@@ -47,7 +47,7 @@ export class UsuarioService {
   async eliminarUsuario(id: number): Promise<void> {
     const usuario = await this.findUsuarioById(id);
 
-    if (usuario.rol === 'Decana') {
+    if (usuario.rol === 'Decana' || usuario.rol === 'decana') {
       throw new BadRequestException(
         'No se puede eliminar un usuario con rol de Decana.',
       );

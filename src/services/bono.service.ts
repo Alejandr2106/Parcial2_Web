@@ -19,7 +19,7 @@ export class BonoService {
 
   async crearBono(bono: Partial<CreateBonoDto>): Promise<Bono> {
     const usuario = await this.usuarioRepository.findOne({ where: { id: bono.usuarioId } });
-    if (!usuario || usuario.rol !== 'Profesor') {
+    if (!usuario || usuario.rol !== 'Profesor' ) {
       throw new BadRequestException('Solo un usuario con rol de Profesor puede tener bonos.');
     }
 
@@ -40,7 +40,7 @@ export class BonoService {
   }
 
   async findBonoByCodigo(cod: string): Promise<Bono> {
-    const id = parseInt(cod, 10); // Convertir a número
+    const id = parseInt(cod, 10); 
     if (isNaN(id)) {
       throw new BadRequestException('El código proporcionado no es un número válido.');
     }

@@ -1,0 +1,353 @@
+{
+	"info": {
+		"_postman_id": "e1d8bdc0-10d1-45d0-b7d3-9a5d5387ee00",
+		"name": "Pruebas Individuales Usuario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31464450"
+	},
+	"item": [
+		{
+			"name": "CrearUsuario1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Usuario creado correctamente\", function () {\r",
+							"    var responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.have.property(\"cedula\", 12344444);\r",
+							"    pm.expect(responseJson).to.have.property(\"nombre\", \"Juan\");\r",
+							"    pm.expect(responseJson).to.have.property(\"grupoInvestigacion\", \"TICSW\");\r",
+							"    pm.expect(responseJson).to.have.property(\"rol\", \"Profesor\");\r",
+							"    pm.expect(responseJson).to.have.property(\"numeroExtension\", 12345678);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta tiene la estructura correcta\", function () {\r",
+							"    var responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.have.all.keys(\"id\", \"cedula\", \"nombre\", \"grupoInvestigacion\", \"rol\", \"numeroExtension\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cedula\": 12344444,\r\n  \"nombre\": \"Juan\",\r\n  \"grupoInvestigacion\": \"TICSW\",\r\n  \"rol\": \"Profesor\",\r\n  \"numeroExtension\": 12345678\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearUsuario2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Usuario creado correctamente\", function () {\r",
+							"    var responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.have.property(\"cedula\", 987654321);\r",
+							"    pm.expect(responseJson).to.have.property(\"nombre\", \"Felipe\");\r",
+							"    pm.expect(responseJson).to.have.property(\"grupoInvestigacion\", \"TICSW\");\r",
+							"    pm.expect(responseJson).to.have.property(\"rol\", \"Profesor\");\r",
+							"    pm.expect(responseJson).to.have.property(\"numeroExtension\", 12345678);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta tiene la estructura correcta\", function () {\r",
+							"    var responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.have.all.keys(\"id\", \"cedula\", \"nombre\", \"grupoInvestigacion\", \"rol\", \"numeroExtension\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cedula\": 987654321,\r\n  \"nombre\": \"Felipe\",\r\n  \"grupoInvestigacion\": \"TICSW\",\r\n  \"rol\": \"Profesor\",\r\n  \"numeroExtension\": 12345678\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearUsuarioNoProfesor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Usuario creado correctamente\", function () {\r",
+							"    var responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.have.property(\"cedula\", 987654321);\r",
+							"    pm.expect(responseJson).to.have.property(\"nombre\", \"Felipe2\");\r",
+							"    pm.expect(responseJson).to.have.property(\"grupoInvestigacion\", \"TICSW\");\r",
+							"    pm.expect(responseJson).to.have.property(\"rol\", \"Decano\");\r",
+							"    pm.expect(responseJson).to.have.property(\"numeroExtension\", 12345678);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta tiene la estructura correcta\", function () {\r",
+							"    var responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.have.all.keys(\"id\", \"cedula\", \"nombre\", \"grupoInvestigacion\", \"rol\", \"numeroExtension\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cedula\": 987654321,\r\n  \"nombre\": \"Felipe2\",\r\n  \"grupoInvestigacion\": \"TICSW\",\r\n  \"rol\": \"Decano\",\r\n  \"numeroExtension\": 12345678\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuscarUsuarioID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Usuario encontrado correctamente\", function () {\r",
+							"    var responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.have.property(\"id\");\r",
+							"    pm.expect(responseJson).to.have.property(\"cedula\");\r",
+							"    pm.expect(responseJson).to.have.property(\"nombre\");\r",
+							"    pm.expect(responseJson).to.have.property(\"grupoInvestigacion\");\r",
+							"    pm.expect(responseJson).to.have.property(\"rol\");\r",
+							"    pm.expect(responseJson).to.have.property(\"numeroExtension\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Datos del usuario correcto\", function () {\r",
+							"    var responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson.id).to.eql(1); \r",
+							"    pm.expect(responseJson.cedula).to.eql(12344444); \r",
+							"    pm.expect(responseJson.nombre).to.eql(\"Juan\"); \r",
+							"    pm.expect(responseJson.grupoInvestigacion).to.eql(\"TICSW\"); \r",
+							"    pm.expect(responseJson.rol).to.eql(\"Profesor\"); \r",
+							"    pm.expect(responseJson.numeroExtension).to.eql(12345678); \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/usuario/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"usuario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuscarUsuarioID (negativa)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 404\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(404);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields - message, error, and statusCode\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.message).to.exist;\r",
+							"    pm.expect(responseData.error).to.exist;\r",
+							"    pm.expect(responseData.statusCode).to.exist;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Message is a non-empty string\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Message should not be empty\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Error is a non-empty string\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.error).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Error should not be empty\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/usuario/100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"usuario",
+						"100"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminarUsuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 204\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(204);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 300ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/usuario/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"usuario",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

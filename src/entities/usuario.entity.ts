@@ -20,7 +20,7 @@ export class Usuario {
   numeroExtension: number;
 
   @Column()
-  rol: string; // 'profesor' | 'estudiante' | 'administrativo'
+  rol: string; 
 
   @ManyToOne(() => Usuario, usuario => usuario.subordinados, { nullable: true })
   jefe: Usuario;

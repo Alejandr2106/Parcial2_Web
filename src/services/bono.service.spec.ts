@@ -8,7 +8,6 @@ import { CreateBonoDto } from 'src/dtos/create-bono.dto';
 import { Repository } from 'typeorm';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 
-// Simulamos las dependencias de la clase
 describe('BonoService', () => {
   let service: BonoService;
   let bonoRepository: Repository<Bono>;
@@ -42,7 +41,7 @@ describe('BonoService', () => {
     claseRepository = module.get<Repository<Clase>>(getRepositoryToken(Clase));
   });
 
-  // Casos de prueba para el método 'crearBono'
+  // 'crearBono'
   describe('crearBono', () => {
     it('debería crear un bono correctamente', async () => {
       const createBonoDto: CreateBonoDto = {
